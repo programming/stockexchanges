@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Exchanges</title>
+</head>
+<body>
+<h1>Stock Exchanges</h1>
+    <ul id="exchangeList"></ul>
+
+    <!-- Link to the external exchanges.js file -->
+    <script src="exchanges.js"></script>
+
+    <script>
+        // Wait for the DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sort the exchanges by name
+            exchanges.sort((a, b) => a.name.localeCompare(b.name));
+
+            // Get the list element from the DOM
+            const listElement = document.getElementById('exchangeList');
+
+            // Iterate over the sorted exchanges array and create list items
+            exchanges.forEach(exchange => {
+                const listItem = document.createElement('li');
+                
+                // Create the link element
+                const link = document.createElement('a');
+                link.href = `${exchange.acronym.toLowerCase()}.html`;
+                link.textContent = `${exchange.name} (${exchange.acronym})`;
+
+                // Append the link to the list item
+                listItem.appendChild(link);
+                listElement.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
